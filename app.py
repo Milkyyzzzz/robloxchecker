@@ -7,6 +7,26 @@ st.set_page_config(
     page_title="Roblox Advanced ID & User Search", page_icon="🔍", layout="centered"
 )
 
+# --- CUSTOM CSS FOR WATERMARK ---
+st.markdown(
+    """
+    <style>
+    .watermark {
+        position: fixed;
+        bottom: 15px;
+        right: 20px;
+        opacity: 0.25;
+        font-family: 'Brush Script MT', cursive, sans-serif;
+        font-size: 1.25rem;
+        pointer-events: none;
+        z-index: 99999;
+    }
+    </style>
+    <div class="watermark">Made by: MiddleLee3 / Milkyyzzzz</div>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.title("🔍 Roblox Advanced User & ID Scanner")
 st.write(
     "Search for users by username keyword, exact User ID, or scan users "
@@ -27,9 +47,11 @@ selected_user_id = None
 user_id_list = []
 
 if lookup_method == "Search Username (Keyword)":
+  # Cleared default value so it waits for input with a clean placeholder
   keyword = st.text_input(
       "Enter Username Keyword",
-      "Builder",
+      value="",
+      placeholder="Type a username...",
       help="Type a username or part of a name to search like on Roblox.",
   )
   if keyword.strip():
