@@ -7,19 +7,22 @@ st.set_page_config(
     page_title="Roblox Advanced ID & User Search", page_icon="🔍", layout="centered"
 )
 
-# --- CUSTOM CSS FOR WATERMARK ---
+# --- CUSTOM CSS FOR WATERMARK & UI CLEANUP ---
 st.markdown(
     """
     <style>
+    /* Hide Streamlit's default footer so it doesn't cover the watermark */
+    footer {visibility: hidden;}
+    
     .watermark {
         position: fixed;
         bottom: 15px;
         right: 20px;
-        opacity: 0.25;
+        opacity: 0.3;
         font-family: 'Brush Script MT', cursive, sans-serif;
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         pointer-events: none;
-        z-index: 99999;
+        z-index: 999999;
     }
     </style>
     <div class="watermark">Made by: MiddleLee3 / Milkyyzzzz</div>
@@ -29,9 +32,9 @@ st.markdown(
 
 st.title("🔍 Roblox Advanced User & ID Scanner")
 st.write(
-    "Search for users by username keyword, exact User ID, or scan users "
-    "**near a specific User ID**, then check them against your bulk list of "
-    "Groups, Friends, or Badges!"
+    "Search for users by username keyword, exact User ID, or scan users"
+    " **near a specific User ID**, then check them against your bulk list of"
+    " Groups, Friends, or Badges!"
 )
 
 # 1. Selection for Lookup Method
@@ -47,7 +50,6 @@ selected_user_id = None
 user_id_list = []
 
 if lookup_method == "Search Username (Keyword)":
-  # Cleared default value so it waits for input with a clean placeholder
   keyword = st.text_input(
       "Enter Username Keyword",
       value="",
@@ -112,7 +114,10 @@ check_type = st.selectbox(
 raw_ids_input = st.text_area(
     "Paste Raw IDs to Verify (Groups, Friends, or Badges)",
     placeholder="123456, 7891011\n121314",
-    help="Paste your bulk list of target IDs separated by commas, spaces, or newlines.",
+    help=(
+        "Paste your bulk list of target IDs separated by commas, spaces, or"
+        " newlines."
+    ),
 )
 
 
